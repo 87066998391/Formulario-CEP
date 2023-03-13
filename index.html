@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Busca</title>
+    <link rel="stylesheet" href="foto.css"
+</head>
+<img src="download.png" alt="logo do grupo Bug Hunters">
+<body>
+    <header></header>
+    <h1> Formulário de Busca </h1>
+
+    <form action="">
+        <label for="nome">Nome</label><br>
+        <input type="text" id="nome"><br>
+        <label for="email">Email</label><br>
+        <input type="text" id="email"><br>
+        <label for="telefone">Telefone</label><br>
+        <input type="text" id="telefone"><br>   
+        <label for="cep">Cep</label><br>
+        <input type="text" id="cep"><br>
+        <label for="logradouro">Enderço*</label><br>
+        <input type="text" id="logradouro"><br>
+        <label for="numero">Número</label><br>
+        <input type="text" id="numero"><br>
+        <label for="complemento">Complemento</label><br>
+        <input type="text" id="complemento"><br>
+        <label for="bairro">Bairro*</label><br>
+        <input type="text" id="bairro"><br>
+        <label for="localidade">Cidade*</label><br>
+        <input type="text" id="localidade"><br>
+        <label for="uf">Estado*</label><br>
+        <input type="text" id="uf"><br>
+        
+
+
+    <input type="button" onclick="enviar()" value="enviar">
+
+    </form>
+
+
+    <script>
+
+       const cep = document.getElementById("cep");
+       cep.addEventListener("blur" , (e) =>{
+      
+        let Cep = document.getElementById("cep").value;
+        let search = cep.value.replace("-","")
+        fetch(`https://viacep.com.br/ws/${search}/json/`).then((response) =>{
+            response.json().then(data => {
+               console.log
+            document.getElementById("logradouro").value = data.logradouro;
+            document.getElementById("bairro").value = data.bairro;
+            document.getElementById("localidade").value = data.localidade;
+            document.getElementById("uf").value = data.uf;
+       
+            
+            
+            
+         }) 
+        
+    
+        })
+        
+       
+       })
+       function enviar (){
+        let nome = document.getElementById("nome").value;
+        let email= document.getElementById("email").value;
+        let telefone = document.getElementById("telefone").value;
+        let cep = document.getElementById("cep").value;
+        let logradouro = document.getElementById("logradouro").value;
+        let numero = document.getElementById("numero").value;
+        let bairro = document.getElementById("bairro").value;
+        let localidade = document.getElementById("localidade").value;
+        let uf = document.getElementById("uf").value;
+        
+
+        let json = {
+            "nome": nome,
+            "email": email,
+            "telefone": telefone,
+            "logradouro": logradouro,
+            "numero": numero,
+            "bairro": bairro,
+            "localidade": localidade,
+            "uf": uf        
+
+        }
+        console.log
+        
+       }
+    </script>
+    
+</body>
+
+</html>
